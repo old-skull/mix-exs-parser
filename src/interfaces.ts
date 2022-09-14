@@ -6,23 +6,24 @@ export interface Content {
   deps: string;
   elixirc_paths: string[];
   extra_applications: string[];
-  dep_from_hexpm: string;
-  dep_from_git: string;
 }
 
 export interface Def {
-  name: string;
-  content: Content;
+  content: Partial<Content>;
   rawContent: string;
   isPrivate: boolean;
 }
 
+export interface Defs {
+  [key: string]: Def;
+}
+
 export interface Result {
   moduleName: string;
-  uses: string[];
-  defs: Def[];
+  uses: RegExpMatchArray;
   comments: {
-    single: string[];
-    multi: string[];
+    single: RegExpMatchArray;
+    multi: RegExpMatchArray;
   };
+  defs: Defs;
 }

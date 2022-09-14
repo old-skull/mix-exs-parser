@@ -19,7 +19,8 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --clean",
     "watch": "npm run build -- --watch src",
-    "format": "prettier --write \"./**/*.ts\""
+    "format": "prettier --write \"./**/*.ts\"",
+    "test": "ava"
   },
   "keywords": [
     "old-skull",
@@ -31,6 +32,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.7.16",
+    "ava": "^4.3.3",
     "eslint": "^8.23.0",
     "prettier": "^2.7.1",
     "tsup": "^6.2.3",

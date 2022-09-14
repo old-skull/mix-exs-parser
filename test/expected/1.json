@@ -1,0 +1,50 @@
+{
+  "moduleName": "App.MixProject",
+  "uses": [
+    "Mix.Project",
+    "Mix.Env"
+  ],
+  "comments": {
+    "single": [
+      "# Run \"mix help compile.app\" to learn about applications.",
+      "# Run \"mix help deps\" to learn about dependencies.",
+      "# {:dep_from_hexpm, \"~> 0.3.0\"},",
+      "# {:dep_from_git, git: \"https://github.com/elixir-lang/my_dep.git\", tag: \"0.1.0\"}"
+    ],
+    "multi": [
+      "\"\"\"\n    Multiline comment as description of the application\n    \"\"\""
+    ]
+  },
+  "defs": {
+    "description": {
+      "rawContent": "\"\"\"\n    Multiline comment as description of the application\n    \"\"\"",
+      "content": {},
+      "isPrivate": true
+    },
+    "extra_applications\\(_\\)": {
+      "rawContent": "[:logger]",
+      "content": {},
+      "isPrivate": true
+    },
+    "extra_applications\\(:test\\)": {
+      "rawContent": "[:stream_data | extra_applications(123)]",
+      "content": {},
+      "isPrivate": true
+    },
+    "project": {
+      "rawContent": "[\n      app: :app,\n      version: \"0.1.0\",\n      elixir: \"~> 1.13\",\n      start_permanent: Mix.env() == :prod,\n      deps: deps()\n    ]",
+      "content": {},
+      "isPrivate": false
+    },
+    "application": {
+      "rawContent": "[:logger]",
+      "content": {},
+      "isPrivate": false
+    },
+    "deps": {
+      "rawContent": "[\n      # {:dep_from_hexpm, \"~> 0.3.0\"},\n      # {:dep_from_git, git: \"https://github.com/elixir-lang/my_dep.git\", tag: \"0.1.0\"}\n    ]",
+      "content": {},
+      "isPrivate": true
+    }
+  }
+}

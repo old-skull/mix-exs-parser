@@ -64,7 +64,7 @@ export const parse = (config: string): Result => {
       config
         .match(
           // prettier-ignore
-          new RegExp('(?<='+name+'.+do:\\s)(.+)'),
+          new RegExp('(?<=(?:def|defp)\s'+name+'.+do:\s)(.+)'),
         )
         ?.at(0) ||
       config

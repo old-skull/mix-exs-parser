@@ -37,7 +37,7 @@
       "isPrivate": false
     },
     "application": {
-      "rawContent": "[:logger]",
+      "rawContent": "# Run \"mix help compile.app\" to learn about applications.\n    [\n      extra_applications: [:logger]\n    ]",
       "content": {},
       "isPrivate": false
     },

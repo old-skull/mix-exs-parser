@@ -12,7 +12,8 @@ export const parse = (config: string): Result => {
    *
    * Match all that starts with `defmodule\s` and `\sdo`.
    */
-  const moduleName: string = config.match(/(?<=defmodule )(?:.*)(?= do)/g)?.at(0) || '';
+  const moduleName: string =
+    config.match(/(?<=defmodule )(?:.*)(?= do)/g)?.at(0) || '';
 
   /**
    * Match all uses imports.
@@ -26,20 +27,17 @@ export const parse = (config: string): Result => {
    *
    * Match all between `def\s|defp\s` and `,|\sdo` without `,`.
    */
-  const defNames: RegExpMatchArray = config.match(/(?<=(?:def|defp)\s)(.*[^,])(?=,|\sdo)/g) || [];
+  const defNames: RegExpMatchArray =
+    config.match(/(?<=(?:def|defp)\s)(.*[^,])(?=,|\sdo)/g) || [];
 
   /**
    * Normalized function names.
    *
    * Since each function could have an arguments like `(arg, arg2)` its crucial to escape `(` and `)` symbols.
    */
-  const normalizedDefNames: string[] = defNames.map(defName => {
-    if (defName.includes('(')) {
-      defName = defName.replace(/\((.*)\)/, '\\($1\\)');
-    }
-
-    return defName;
-  });
+  const normalizedDefNames: string[] = defNames.map(defName =>
+    defName.includes('(') ? defName.replace(/\((.*)\)/, '\\($1\\)') : defName,
+  );
 
   /**
    * Parsed functions map where `key` = `def_name` and `value` = Def
@@ -55,15 +53,11 @@ export const parse = (config: string): Result => {
      */
     const rawContent: string =
       config
-        .match(
-          // prettier-ignore
-          new RegExp('(?<=(?:def|defp)\\s'+defName+'.+do:\\s)(.+)'),
-        )
+        .match(new RegExp('(?<=(?:def|defp)\\s' + defName + '.+do:\\s)(.+)'))
         ?.at(0) ||
       config
         .match(
-          // prettier-ignore
-          new RegExp('(?<='+defName+'\\sdo\n\\s{4,})(?:[^<]+?)(?=\\s+end)'),
+          new RegExp('(?<=' + defName + '\\sdo\n\\s{4,})(?:[^<]+?)(?=\\s+end)'),
         )
         ?.at(0) ||
       '';
@@ -80,10 +74,7 @@ export const parse = (config: string): Result => {
      */
     const defKeyword: string =
       config
-        .match(
-          // prettier-ignore
-          new RegExp('(?<=\\s+)(def|defp)(?=\\s'+defName+')'),
-        )
+        .match(new RegExp('(?<=\\s+)(def|defp)(?=\\s' + defName + ')'))
         ?.at(0) || '';
 
     defs[defName] = {
@@ -102,9 +93,11 @@ export const parse = (config: string): Result => {
 
   /**
    * Match all multi-line comments.
+   *
    * Match all between `"""` and `"""`.
    */
-  const multiLineComments: RegExpMatchArray = config.match(/"""[\s\S]*"""/g) || [];
+  const multiLineComments: RegExpMatchArray =
+    config.match(/"""[\s\S]*"""/g) || [];
 
   const result: Result = {
     moduleName,

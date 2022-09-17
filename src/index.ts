@@ -54,7 +54,7 @@ export const parse = (config: string): Result => {
    * @see [Def](./index.d.ts)
    */
   const defs: Defs = {};
-  normalizedDefNames.forEach(name => {
+  normalizedDefNames.forEach(defName => {
     /**
      * Unparced content of the function.
      *
@@ -64,13 +64,13 @@ export const parse = (config: string): Result => {
       config
         .match(
           // prettier-ignore
-          new RegExp('(?<=(?:def|defp)\\s'+name+'.+do:\\s)(.+)'),
+          new RegExp('(?<=(?:def|defp)\\s'+defName+'.+do:\\s)(.+)'),
         )
         ?.at(0) ||
       config
         .match(
           // prettier-ignore
-          new RegExp('(?<='+name+'\\sdo\n\\s{4,})(?:[^<]+?)(?=\\s+end)'),
+          new RegExp('(?<='+defName+'\\sdo\n\\s{4,})(?:[^<]+?)(?=\\s+end)'),
         )
         ?.at(0) ||
       '';
@@ -89,11 +89,11 @@ export const parse = (config: string): Result => {
       config
         .match(
           // prettier-ignore
-          new RegExp('(?<=\\s+)(def|defp)(?=\\s'+name+')'),
+          new RegExp('(?<=\\s+)(def|defp)(?=\\s'+defName+')'),
         )
         ?.at(0) || '';
 
-    defs[name] = {
+    defs[defName] = {
       rawContent,
       content,
       isPrivate: defKeyword === 'defp',

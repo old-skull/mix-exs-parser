@@ -24,25 +24,18 @@ export const parse = (config: string): Result => {
   /**
    * Match all def names(public and private).
    *
-   * Match all between `def\s|defp\s` and `\sdo`.
+   * Match all between `def\s|defp\s` and `,|\sdo` without `,`.
    */
-  const defNames: RegExpMatchArray = config.match(/(?<=(?<=def )|(?<=defp ))(.*)(?= do)/g) || [];
+  const defNames: RegExpMatchArray = config.match(/(?<=(?:def|defp)\s)(.*[^,])(?=,|\sdo)/g) || [];
 
   /**
    * Normalized function names.
    *
    * Since each function could have an arguments like `(arg, arg2)` its crucial to escape `(` and `)` symbols.
-   *
-   * And also, due to regex, there is an extra comma at the end of lambda.
    */
   const normalizedDefNames: string[] = defNames.map(defName => {
     if (defName.includes('(')) {
       defName = defName.replace(/\((.*)\)/, '\\($1\\)');
-    }
-
-    // HACK: update defNames to avoid comma and extra check
-    if (defName[defName.length - 1] === ',') {
-      defName = defName.slice(0, defName.length - 1);
     }
 
     return defName;

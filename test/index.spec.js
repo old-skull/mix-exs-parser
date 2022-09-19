@@ -3,25 +3,27 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from '../dist/index.js';
 
-test('read file', t => {
-  const configsDirPath = new URL('./configs', import.meta.url);
-  const expectedDirPath = new URL('./expected', import.meta.url);
-
-  const configsDir = readdirSync(configsDirPath);
-  const expectedDir = readdirSync(expectedDirPath);
-
+test.before(t => {
   if (configsDir.length !== expectedDir.length)
     t.fail('Number of configs files should match number of expected files.');
+});
 
-  configsDir.forEach((configName, idx) => {
-    const configPath = new URL(join(configsDirPath.href, configName));
-    const config = readFileSync(configPath).toString();
+const configsDirPath = new URL('./configs', import.meta.url);
+const expectedDirPath = new URL('./expected', import.meta.url);
 
-    const expectedPath = new URL(join(expectedDirPath.href, expectedDir[idx]));
-    const expected = readFileSync(expectedPath).toString();
+const configsDir = readdirSync(configsDirPath);
+const expectedDir = readdirSync(expectedDirPath);
 
-    const parsedConfig = JSON.stringify(parse(config), null, 2);
+configsDir.forEach((configName, idx) => {
+  const configPath = new URL(join(configsDirPath.href, configName));
+  const config = readFileSync(configPath).toString();
 
-    t.is(parsedConfig, expected);
+  const expectedPath = new URL(join(expectedDirPath.href, expectedDir[idx]));
+  const expected = readFileSync(expectedPath).toString();
+
+  const parsedConfig = JSON.stringify(parse(config), null, 2);
+
+  test(`files: ${idx}.exs and ${idx}.json`, t => {
+    t.deepEqual(parsedConfig, expected);
   });
 });

@@ -1,0 +1,170 @@
+{
+  "moduleName": "Siblings.MixProject",
+  "uses": [
+    "Mix.Project"
+  ],
+  "comments": {
+    "single": [
+      "# Source: https://github.com/am-kantox/siblings/blob/main/mix.exs",
+      "# dev / test",
+      "# Siblings,",
+      "# Siblings.Worker,"
+    ],
+    "multi": [
+      "\"\"\"\n    The partitioned dynamic supervision of FSM-backed workers.\n    \"\"\"\n  end\n\n  defp package do\n    [\n      name: @app,\n      files: ~w|stuff lib mix.exs README.md LICENSE|,\n      maintainers: [\"Aleksei Matiushkin\"],\n      licenses: [\"Kantox LTD\"],\n      links: %{\n        \"GitHub\" => \"https://github.com/am-kantox/#{@app}\",\n        \"Docs\" => \"https://hexdocs.pm/#{@app}\"\n      }\n    ]\n  end\n\n  defp docs do\n    [\n      main: \"readme\",\n      source_ref: \"v#{@version}\",\n      canonical: \"http://hexdocs.pm/#{@app}\",\n      logo: \"stuff/#{@app}-48x48.png\",\n      source_url: \"https://github.com/am-kantox/#{@app}\",\n      assets: \"stuff/images\",\n      extras: ~w[README.md],\n      groups_for_modules: [\n        # Siblings,\n        # Siblings.Worker,\n\n        Internals: [\n          Siblings.InternalWorker,\n          Siblings.InternalWorker.State\n        ]\n      ],\n      before_closing_body_tag: &before_closing_body_tag/1\n    ]\n  end\n\n  defp compilers(:dev), do: [:boundary | compilers(:prod)]\n  defp compilers(_), do: [:telemetria | Mix.compilers()]\n\n  defp elixirc_paths(:test), do: [\"lib\", \"test/support\"]\n  defp elixirc_paths(:ci), do: [\"lib\", \"test/support\"]\n  defp elixirc_paths(:dev), do: [\"lib\", \"test/support\"]\n  defp elixirc_paths(_), do: [\"lib\"]\n\n  defp before_closing_body_tag(:html) do\n    \"\"\"\n    <script src=\"https://cdn.jsdelivr.net/npm/mermaid@8.13.3/dist/mermaid.min.js\"></script>\n    <script>\n    document.addEventListener(\"DOMContentLoaded\", function () {\n    mermaid.initialize({ startOnLoad: false });\n    let id = 0;\n    for (const codeEl of document.querySelectorAll(\"pre code.mermaid\")) {\n      const preEl = codeEl.parentElement;\n      const graphDefinition = codeEl.textContent;\n      const graphEl = document.createElement(\"div\");\n      const graphId = \"mermaid-graph-\" + id++;\n      mermaid.render(graphId, graphDefinition, function (svgSource, bindListeners) {\n        graphEl.innerHTML = svgSource;\n        bindListeners && bindListeners(graphEl);\n        preEl.insertAdjacentElement(\"afterend\", graphEl);\n        preEl.remove();\n      });\n    }\n    });\n    </script>\n    \"\"\""
+    ]
+  },
+  "defs": {
+    "project": {
+      "rawContent": "[\n      app: @app,\n      name: \"Siblings\",\n      version: @version,\n      elixir: \"~> 1.12\",\n      compilers: compilers(Mix.env()),\n      elixirc_paths: elixirc_paths(Mix.env()),\n      consolidate_protocols: Mix.env() not in [:dev, :test],\n      description: description(),\n      package: package(),\n      deps: deps(),\n      aliases: aliases(),\n      xref: [exclude: []],\n      docs: docs(),\n      releases: [],\n      dialyzer: [\n        plt_file: {:no_warn, \".dialyzer/dialyzer.plt\"},\n        plt_add_deps: :transitive,\n        list_unused_filters: true,\n        ignore_warnings: \".dialyzer/ignore.exs\"\n      ]\n    ]",
+      "content": {
+        "app": "@app",
+        "name": "Siblings",
+        "version": "@version",
+        "elixir": "~>1.12",
+        "compilers": "compilers(Mix.env())",
+        "elixirc_paths": "elixirc_paths(Mix.env())",
+        "consolidate_protocols": "Mix.env()notin:dev",
+        ":test": ":test",
+        "description": "description()",
+        "package": "package()",
+        "deps": "deps()",
+        "aliases": "aliases()",
+        "xref": "exclude:",
+        "docs": "docs()",
+        "releases:": "releases:",
+        "dialyzer": "plt_file::no_warn",
+        ".dialyzer/dialyzer.plt": ".dialyzer/dialyzer.plt",
+        "plt_add_deps": ":transitive",
+        "list_unused_filters": "true",
+        "ignore_warnings": ".dialyzer/ignore.exs"
+      },
+      "isPrivate": false
+    },
+    "application": {
+      "rawContent": "[\n      extra_applications: [:logger]\n    ]",
+      "content": {
+        "extra_applications": ":logger"
+      },
+      "isPrivate": false
+    },
+    "deps": {
+      "rawContent": "[\n      {:finitomata, \"~> 0.7\"},\n      {:telemetria, \"~> 0.12\", optional: true},\n      {:boundary, \"~> 0.9\", runtime: false},\n      # dev / test\n      {:credo, \"~> 1.0\", only: [:dev, :ci]},\n      {:dialyxir, \"~> 1.0\", only: [:dev, :test, :ci], runtime: false},\n      {:ex_doc, \"~> 0.11\", only: :dev}\n    ]",
+      "content": {
+        ":finitomata": ":finitomata",
+        "~>0.7": "~>0.7",
+        ":telemetria": ":telemetria",
+        "~>0.12": "~>0.12",
+        "optional": "true",
+        ":boundary": ":boundary",
+        "~>0.9": "~>0.9",
+        "runtime": "false",
+        ":credo": ":credo",
+        "~>1.0": "~>1.0",
+        "only": ":dev",
+        ":ci": ":ci",
+        ":dialyxir": ":dialyxir",
+        ":test": ":test",
+        ":ex_doc": ":ex_doc",
+        "~>0.11": "~>0.11"
+      },
+      "isPrivate": true
+    },
+    "aliases": {
+      "rawContent": "[\n      quality: [\"format\", \"credo --strict\", \"dialyzer\"],\n      \"quality.ci\": [\n        \"format --check-formatted\",\n        \"credo --strict\",\n        \"dialyzer\"\n      ]\n    ]",
+      "content": {
+        "quality": "format",
+        "credo--strict": "credo--strict",
+        "dialyzer": "dialyzer",
+        "quality.ci": "format--check-formatted"
+      },
+      "isPrivate": true
+    },
+    "description": {
+      "rawContent": "\"\"\"\n    The partitioned dynamic supervision of FSM-backed workers.\n    \"\"\"",
+      "content": {
+        "\"\"\"\n    The partitioned dynamic supervision of FSM-backed workers.\n    \"\"\"": "\"\"\"\n    The partitioned dynamic supervision of FSM-backed workers.\n    \"\"\""
+      },
+      "isPrivate": true
+    },
+    "package": {
+      "rawContent": "[\n      name: @app,\n      files: ~w|stuff lib mix.exs README.md LICENSE|,\n      maintainers: [\"Aleksei Matiushkin\"],\n      licenses: [\"Kantox LTD\"],\n      links: %{\n        \"GitHub\" => \"https://github.com/am-kantox/#{@app}\",\n        \"Docs\" => \"https://hexdocs.pm/#{@app}\"\n      }\n    ]",
+      "content": {
+        "name": "@app",
+        "files": "~w|stufflibmix.exsREADME.mdLICENSE|",
+        "maintainers": "AlekseiMatiushkin",
+        "licenses": "KantoxLTD",
+        "links": "%GitHub=>https://github.com/am-kantox/Docs=>https://hexdocs.pm/"
+      },
+      "isPrivate": true
+    },
+    "docs": {
+      "rawContent": "[\n      main: \"readme\",\n      source_ref: \"v#{@version}\",\n      canonical: \"http://hexdocs.pm/#{@app}\",\n      logo: \"stuff/#{@app}-48x48.png\",\n      source_url: \"https://github.com/am-kantox/#{@app}\",\n      assets: \"stuff/images\",\n      extras: ~w[README.md],\n      groups_for_modules: [\n        # Siblings,\n        # Siblings.Worker,\n\n        Internals: [\n          Siblings.InternalWorker,\n          Siblings.InternalWorker.State\n        ]\n      ],\n      before_closing_body_tag: &before_closing_body_tag/1\n    ]",
+      "content": {
+        "main": "readme",
+        "source_ref": "vcanonical:http://hexdocs.pm/logo:stuff/source_url:https://github.com/am-kantox/assets:stuff/images",
+        "extras": "~wREADME.md",
+        "groups_for_modules": "Internals:Siblings.InternalWorker",
+        "Siblings.InternalWorker.State": "Siblings.InternalWorker.State",
+        "before_closing_body_tag": "&before_closing_body_tag/1"
+      },
+      "isPrivate": true
+    },
+    "compilers\\(:dev\\)": {
+      "rawContent": "[:boundary | compilers(:prod)]",
+      "content": {
+        "[:boundary | compilers(:prod)]": "[:boundary | compilers(:prod)]"
+      },
+      "isPrivate": true
+    },
+    "compilers\\(_\\)": {
+      "rawContent": "[:telemetria | Mix.compilers()]",
+      "content": {
+        "[:telemetria | Mix.compilers()]": "[:telemetria | Mix.compilers()]"
+      },
+      "isPrivate": true
+    },
+    "elixirc_paths\\(:test\\)": {
+      "rawContent": "[\"lib\", \"test/support\"]",
+      "content": {
+        "[\"lib\", \"test/support\"]": "[\"lib\", \"test/support\"]"
+      },
+      "isPrivate": true
+    },
+    "elixirc_paths\\(:ci\\)": {
+      "rawContent": "[\"lib\", \"test/support\"]",
+      "content": {
+        "[\"lib\", \"test/support\"]": "[\"lib\", \"test/support\"]"
+      },
+      "isPrivate": true
+    },
+    "elixirc_paths\\(:dev\\)": {
+      "rawContent": "[\"lib\", \"test/support\"]",
+      "content": {
+        "[\"lib\", \"test/support\"]": "[\"lib\", \"test/support\"]"
+      },
+      "isPrivate": true
+    },
+    "elixirc_paths\\(_\\)": {
+      "rawContent": "[\"lib\"]",
+      "content": {
+        "[\"lib\"]": "[\"lib\"]"
+      },
+      "isPrivate": true
+    },
+    "before_closing_body_tag\\(:html\\)": {
+      "rawContent": "",
+      "content": {
+        "": ""
+      },
+      "isPrivate": true
+    },
+    "before_closing_body_tag\\(_\\)": {
+      "rawContent": "\"\"",
+      "content": {
+        "\"\"": "\"\""
+      },
+      "isPrivate": true
+    }
+  }
+}

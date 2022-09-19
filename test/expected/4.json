@@ -1,0 +1,180 @@
+{
+  "moduleName": "Guardian.Mixfile",
+  "uses": [
+    "Mix.Project"
+  ],
+  "comments": {
+    "single": [
+      "# Source: https://github.com/ueberauth/guardian/blob/master/mix.exs",
+      "# Ungrouped:",
+      "# - Guardian",
+      "# Optional dependencies",
+      "# Tools"
+    ],
+    "multi": []
+  },
+  "defs": {
+    "project": {
+      "rawContent": "[\n      name: \"Guardian\",\n      app: :guardian,\n      version: @version,\n      elixir: \"~> 1.13\",\n      elixirc_paths: elixirc_paths(Mix.env()),\n      package: package(),\n      source_url: @url,\n      build_embedded: Mix.env() == :prod,\n      start_permanent: Mix.env() == :prod,\n      maintainers: @maintainers,\n      description: \"Elixir Authentication framework\",\n      homepage_url: @url,\n      docs: docs(),\n      deps: deps(),\n      xref: [exclude: [:phoenix]],\n      dialyzer: dialyxir(),\n      test_coverage: [tool: ExCoveralls],\n      preferred_cli_env: [\n        coveralls: :test,\n        docs: :docs,\n        \"coveralls.html\": :test\n      ]\n    ]",
+      "content": {
+        "name": "Guardian",
+        "app": ":guardian",
+        "version": "@version",
+        "elixir": "~>1.13",
+        "elixirc_paths": "elixirc_paths(Mix.env())",
+        "package": "package()",
+        "source_url": "@url",
+        "build_embedded": "Mix.env()==:prod",
+        "start_permanent": "Mix.env()==:prod",
+        "maintainers": "@maintainers",
+        "description": "ElixirAuthenticationframework",
+        "homepage_url": "@url",
+        "docs": ":docs",
+        "deps": "deps()",
+        "xref": "exclude::phoenix",
+        "dialyzer": "dialyxir()",
+        "test_coverage": "tool:ExCoveralls",
+        "preferred_cli_env": "coveralls::test",
+        "coveralls.html": ":test"
+      },
+      "isPrivate": false
+    },
+    "elixirc_paths\\(:test\\)": {
+      "rawContent": "[\"lib\", \"test/support\"]",
+      "content": {
+        "[\"lib\", \"test/support\"]": "[\"lib\", \"test/support\"]"
+      },
+      "isPrivate": true
+    },
+    "elixirc_paths\\(_\\)": {
+      "rawContent": "[\"lib\"]",
+      "content": {
+        "[\"lib\"]": "[\"lib\"]"
+      },
+      "isPrivate": true
+    },
+    "application": {
+      "rawContent": "[extra_applications: [:crypto, :logger]]",
+      "content": {
+        "[extra_applications: [:crypto, :logger]]": "[extra_applications: [:crypto, :logger]]"
+      },
+      "isPrivate": false
+    },
+    "docs": {
+      "rawContent": "[\n      source_ref: \"v#{@version}\",\n      main: \"readme\",\n      extra_section: \"guides\",\n      assets: \"guides/assets\",\n      formatters: [\"html\", \"epub\"],\n      groups_for_modules: groups_for_modules(),\n      extras: extras(),\n      groups_for_extras: groups_for_extras()\n    ]",
+      "content": {
+        "source_ref": "vmain:readme",
+        "extra_section": "guides",
+        "assets": "guides/assets",
+        "formatters": "html",
+        "epub": "epub",
+        "groups_for_modules": "groups_for_modules()",
+        "extras": "extras()",
+        "groups_for_extras": "groups_for_extras()"
+      },
+      "isPrivate": false
+    },
+    "dialyxir": {
+      "rawContent": "[\n      plt_add_deps: :transitive,\n      plt_add_apps: [:mix],\n      flags: [:race_conditions, :no_opaque]\n    ]",
+      "content": {
+        "plt_add_deps": ":transitive",
+        "plt_add_apps": ":mix",
+        "flags": ":race_conditions",
+        ":no_opaque": ":no_opaque"
+      },
+      "isPrivate": true
+    },
+    "extras": {
+      "rawContent": "[\n      \"README.md\": [\n        title: \"Readme\"\n      ],\n      \"guides/introduction/overview.md\": [\n        filename: \"introduction-overview\"\n      ],\n      \"guides/introduction/installation.md\": [\n        filename: \"introduction-installation\"\n      ],\n      \"guides/introduction/implementation.md\": [\n        filename: \"introduction-implementation\",\n        title: \"Implementation Modules\"\n      ],\n      \"guides/introduction/community.md\": [\n        filename: \"introduction-community\"\n      ],\n      \"guides/tutorial/start-tutorial.md\": [\n        filename: \"tutorial-start\",\n        title: \"Getting Started with Guardian\"\n      ],\n      \"guides/tokens/start-tokens.md\": [\n        filename: \"tokens-start\",\n        title: \"Start\"\n      ],\n      \"guides/tokens/jwt/start.md\": [\n        filename: \"tokens-jwt-start\",\n        title: \"Start\"\n      ],\n      \"guides/plug/start-plug.md\": [\n        filename: \"plug-start\",\n        title: \"Start\"\n      ],\n      \"guides/plug/pipelines.md\": [\n        filename: \"plug-pipelines\",\n        title: \"Pipelines\"\n      ],\n      \"guides/phoenix/start-phoenix.md\": [\n        filename: \"phoenix-start\",\n        title: \"Start\"\n      ],\n      \"guides/permissions/start-permissions.md\": [\n        filename: \"permissions-start\",\n        title: \"Start\"\n      ],\n      \"guides/upgrading/v1.0.md\": [\n        filename: \"upgrading-v1.0\"\n      ]\n    ]",
+      "content": {
+        "README.md": "title:Readme",
+        "guides/introduction/overview.md": "filename:introduction-overview",
+        "guides/introduction/installation.md": "filename:introduction-installation",
+        "guides/introduction/implementation.md": "filename:introduction-implementation",
+        "title": "Start",
+        "guides/introduction/community.md": "filename:introduction-community",
+        "guides/tutorial/start-tutorial.md": "filename:tutorial-start",
+        "guides/tokens/start-tokens.md": "filename:tokens-start",
+        "guides/tokens/jwt/start.md": "filename:tokens-jwt-start",
+        "guides/plug/start-plug.md": "filename:plug-start",
+        "guides/plug/pipelines.md": "filename:plug-pipelines",
+        "guides/phoenix/start-phoenix.md": "filename:phoenix-start",
+        "guides/permissions/start-permissions.md": "filename:permissions-start",
+        "guides/upgrading/v1.0.md": "filename:upgrading-v1.0"
+      },
+      "isPrivate": true
+    },
+    "groups_for_extras": {
+      "rawContent": "[\n      Introduction: Path.wildcard(\"guides/introduction/*.md\"),\n      Tutorial: Path.wildcard(\"guides/tutorial/*.md\"),\n      Tokens: Path.wildcard(\"guides/tokens/*.md\"),\n      \"JWT Tokens\": Path.wildcard(\"guides/tokens/jwt/*.md\"),\n      Plug: Path.wildcard(\"guides/plug/*.md\"),\n      Phoenix: Path.wildcard(\"guides/phoenix/*.md\"),\n      Permissions: Path.wildcard(\"guides/permissions/*.md\"),\n      \"Upgrade Guides\": Path.wildcard(\"guides/upgrading/*.md\")\n    ]",
+      "content": {
+        "Introduction": "Path.wildcard(guides/introduction/*.md)",
+        "Tutorial": "Path.wildcard(guides/tutorial/*.md)",
+        "Tokens": "Path.wildcard(guides/tokens/*.md)",
+        "JWTTokens": "Path.wildcard(guides/tokens/jwt/*.md)",
+        "Plug": "Path.wildcard(guides/plug/*.md)",
+        "Phoenix": "Path.wildcard(guides/phoenix/*.md)",
+        "Permissions": "Path.wildcard(guides/permissions/*.md)",
+        "UpgradeGuides": "Path.wildcard(guides/upgrading/*.md)"
+      },
+      "isPrivate": true
+    },
+    "groups_for_modules": {
+      "rawContent": "# Ungrouped:\n    # - Guardian\n\n    [\n      Tokens: [\n        Guardian.Token,\n        Guardian.Token.Verify,\n        Guardian.Token.Jwt,\n        Guardian.Token.Jwt.Verify\n      ],\n      Plugs: [\n        Guardian.Plug,\n        Guardian.Plug.Pipeline,\n        Guardian.Plug.EnsureAuthenticated,\n        Guardian.Plug.EnsureNotAuthenticated,\n        Guardian.Plug.LoadResource,\n        Guardian.Plug.VerifySession,\n        Guardian.Plug.VerifyHeader,\n        Guardian.Plug.VerifyCookie,\n        Guardian.Plug.SlidingCookie,\n        Guardian.Plug.Keys\n      ],\n      Permissions: [\n        Guardian.Permissions,\n        Guardian.Permissions.PermissionEncoding,\n        Guardian.Permissions.BitwiseEncoding,\n        Guardian.Permissions.AtomEncoding,\n        Guardian.Permissions.TextEncoding\n      ]\n    ]",
+      "content": {
+        "Tokens": "Guardian.Token",
+        "Guardian.Token.Verify": "Guardian.Token.Verify",
+        "Guardian.Token.Jwt": "Guardian.Token.Jwt",
+        "Guardian.Token.Jwt.Verify": "Guardian.Token.Jwt.Verify",
+        "Plugs": "Guardian.Plug",
+        "Guardian.Plug.Pipeline": "Guardian.Plug.Pipeline",
+        "Guardian.Plug.EnsureAuthenticated": "Guardian.Plug.EnsureAuthenticated",
+        "Guardian.Plug.EnsureNotAuthenticated": "Guardian.Plug.EnsureNotAuthenticated",
+        "Guardian.Plug.LoadResource": "Guardian.Plug.LoadResource",
+        "Guardian.Plug.VerifySession": "Guardian.Plug.VerifySession",
+        "Guardian.Plug.VerifyHeader": "Guardian.Plug.VerifyHeader",
+        "Guardian.Plug.VerifyCookie": "Guardian.Plug.VerifyCookie",
+        "Guardian.Plug.SlidingCookie": "Guardian.Plug.SlidingCookie",
+        "Guardian.Plug.Keys": "Guardian.Plug.Keys",
+        "Permissions": "Guardian.Permissions",
+        "Guardian.Permissions.PermissionEncoding": "Guardian.Permissions.PermissionEncoding",
+        "Guardian.Permissions.BitwiseEncoding": "Guardian.Permissions.BitwiseEncoding",
+        "Guardian.Permissions.AtomEncoding": "Guardian.Permissions.AtomEncoding",
+        "Guardian.Permissions.TextEncoding": "Guardian.Permissions.TextEncoding"
+      },
+      "isPrivate": true
+    },
+    "deps": {
+      "rawContent": "[\n      {:jose, \"~> 1.8\"},\n\n      # Optional dependencies\n      {:plug, \"~> 1.3.3 or ~> 1.4\", optional: true},\n\n      # Tools\n      {:credo, \">= 0.0.0\", only: [:dev, :test], runtime: false},\n      {:dialyxir, \">= 0.0.0\", only: [:dev], runtime: false},\n      {:ex_doc, \">= 0.0.0\", only: [:dev], runtime: false},\n      {:excoveralls, \">= 0.0.0\", only: [:test], runtime: false},\n      {:inch_ex, \">= 0.0.0\", only: [:dev], runtime: false},\n      {:jason, \"~> 1.1\", only: [:dev, :test], runtime: false}\n    ]",
+      "content": {
+        ":jose": ":jose",
+        "~>1.8": "~>1.8",
+        ":plug": ":plug",
+        "~>1.3.3or~>1.4": "~>1.3.3or~>1.4",
+        "optional": "true",
+        ":credo": ":credo",
+        ">=0.0.0": ">=0.0.0",
+        "only": ":dev",
+        ":test": ":test",
+        "runtime": "false",
+        ":dialyxir": ":dialyxir",
+        ":ex_doc": ":ex_doc",
+        ":excoveralls": ":excoveralls",
+        ":inch_ex": ":inch_ex",
+        ":jason": ":jason",
+        "~>1.1": "~>1.1"
+      },
+      "isPrivate": true
+    },
+    "package": {
+      "rawContent": "[\n      maintainers: @maintainers,\n      licenses: [\"MIT\"],\n      links: %{\n        Changelog: \"https://hexdocs.pm/guardian/changelog.html\",\n        GitHub: @url\n      },\n      files: ~w(lib CHANGELOG.md LICENSE mix.exs README.md)\n    ]",
+      "content": {
+        "maintainers": "@maintainers",
+        "licenses": "MIT",
+        "links": "%Changelog:https://hexdocs.pm/guardian/changelog.html",
+        "GitHub": "@url",
+        "files": "~w(libCHANGELOG.mdLICENSEmix.exsREADME.md)"
+      },
+      "isPrivate": true
+    }
+  }
+}

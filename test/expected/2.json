@@ -1,0 +1,134 @@
+{
+  "moduleName": "Iteraptor.Mixfile",
+  "uses": [
+    "Mix.Project"
+  ],
+  "comments": {
+    "single": [
+      "# Source: https://github.com/am-kantox/elixir-iteraptor/blob/master/mix.exs",
+      "# Type \"mix help compile.app\" for more information",
+      "# Type \"mix help deps\" for more examples and options",
+      "# These are the default files included in the package",
+      "# Iteraptor"
+    ],
+    "multi": [
+      "\"\"\"\n    This small library allows the deep iteration / mapping of Enumerables.\n    \"\"\""
+    ]
+  },
+  "defs": {
+    "project": {
+      "rawContent": "[\n      app: @app,\n      version: @version,\n      elixir: \"~> 1.5\",\n      elixirc_paths: elixirc_paths(Mix.env()),\n      build_embedded: Mix.env() == :prod,\n      start_permanent: Mix.env() == :prod,\n      description: description(),\n      package: package(),\n      deps: deps(),\n      aliases: aliases(),\n      docs: docs(),\n      xref: [exclude: []],\n      consolidate_protocols: Mix.env() != :test,\n      dialyzer: [\n        plt_file: {:no_warn, \".dialyzer/plts/dialyzer.plt\"},\n        ignore_warnings: \".dialyzer/ignore.exs\"\n      ]\n    ]",
+      "content": {
+        "app": "@app",
+        "version": "@version",
+        "elixir": "~>1.5",
+        "elixirc_paths": "elixirc_paths(Mix.env())",
+        "build_embedded": "Mix.env()==:prod",
+        "start_permanent": "Mix.env()==:prod",
+        "description": "description()",
+        "package": "package()",
+        "deps": "deps()",
+        "aliases": "aliases()",
+        "docs": "docs()",
+        "xref": "exclude:",
+        "consolidate_protocols": "Mix.env()!=:test",
+        "dialyzer": "plt_file::no_warn",
+        ".dialyzer/plts/dialyzer.plt": ".dialyzer/plts/dialyzer.plt",
+        "ignore_warnings": ".dialyzer/ignore.exs"
+      },
+      "isPrivate": false
+    },
+    "application": {
+      "rawContent": "[\n      applications: [:logger]\n    ]",
+      "content": {
+        "applications": ":logger"
+      },
+      "isPrivate": false
+    },
+    "deps": {
+      "rawContent": "[\n      {:dialyxir, \"~> 1.0.0-rc.6\", only: [:ci, :dev], runtime: false},\n      {:credo, \"~> 1.0\", only: [:ci, :dev, :test], runtime: false},\n      {:stream_data, \"~> 0.4\", only: [:ci, :test], runtime: false},\n      {:ex_doc, \"~> 0.19\", only: :dev}\n    ]",
+      "content": {
+        ":dialyxir": ":dialyxir",
+        "~>1.0.0-rc.6": "~>1.0.0-rc.6",
+        "only": ":dev",
+        ":dev": ":dev",
+        "runtime": "false",
+        ":credo": ":credo",
+        "~>1.0": "~>1.0",
+        ":test": ":test",
+        ":stream_data": ":stream_data",
+        "~>0.4": "~>0.4",
+        ":ex_doc": ":ex_doc",
+        "~>0.19": "~>0.19"
+      },
+      "isPrivate": true
+    },
+    "aliases": {
+      "rawContent": "[\n      quality: [\"format\", \"credo --strict\", \"dialyzer\"],\n      \"quality.ci\": [\n        \"format --check-formatted\",\n        \"credo --strict\",\n        \"dialyzer --halt-exit-status\"\n      ]\n    ]",
+      "content": {
+        "quality": "format",
+        "credo--strict": "credo--strict",
+        "dialyzer": "dialyzer",
+        "quality.ci": "format--check-formatted",
+        "dialyzer--halt-exit-status": "dialyzer--halt-exit-status"
+      },
+      "isPrivate": true
+    },
+    "description": {
+      "rawContent": "\"\"\"\n    This small library allows the deep iteration / mapping of Enumerables.\n    \"\"\"",
+      "content": {
+        "\"\"\"\n    This small library allows the deep iteration / mapping of Enumerables.\n    \"\"\"": "\"\"\"\n    This small library allows the deep iteration / mapping of Enumerables.\n    \"\"\""
+      },
+      "isPrivate": true
+    },
+    "package": {
+      "rawContent": "# These are the default files included in the package\n    [\n      name: @app,\n      files: [\"lib\", \"mix.exs\", \"README*\"],\n      maintainers: [\"Aleksei Matiushkin\"],\n      licenses: [\"MIT\"],\n      links: %{\n        \"GitHub\" => \"https://github.com/#{@github}\",\n        \"Docs\" => \"http://hexdocs.pm/#{@app}\"\n      }\n    ]",
+      "content": {
+        "name": "@app",
+        "files": "lib",
+        "mix.exs": "mix.exs",
+        "README*": "README*",
+        "maintainers": "AlekseiMatiushkin",
+        "licenses": "MIT",
+        "links": "%GitHub=>https://github.com/Docs=>http://hexdocs.pm/"
+      },
+      "isPrivate": true
+    },
+    "docs": {
+      "rawContent": "[\n      main: \"intro\",\n      source_ref: \"v#{@version}\",\n      canonical: \"http://hexdocs.pm/#{@app}\",\n      logo: \"stuff/images/logo.png\",\n      source_url: \"https://github.com/#{@github}\",\n      extras: [\"stuff/pages/intro.md\"],\n      groups_for_modules: [\n        # Iteraptor\n\n        Extras: [\n          Iteraptor.Array,\n          Iteraptor.Config,\n          Iteraptor.Extras,\n          Iteraptor.Iteraptable\n        ],\n        Experimental: [\n          Iteraptor.AST\n        ],\n        Internals: [\n          Iteraptor.Utils\n        ]\n      ]\n    ]",
+      "content": {
+        "main": "intro",
+        "source_ref": "vcanonical:http://hexdocs.pm/logo:stuff/images/logo.png",
+        "source_url": "https://github.com/extras:stuff/pages/intro.md",
+        "groups_for_modules": "Extras:Iteraptor.Array",
+        "Iteraptor.Config": "Iteraptor.Config",
+        "Iteraptor.Extras": "Iteraptor.Extras",
+        "Iteraptor.Iteraptable": "Iteraptor.Iteraptable",
+        "Experimental": "Iteraptor.AST",
+        "Internals": "Iteraptor.Utils"
+      },
+      "isPrivate": true
+    },
+    "elixirc_paths\\(:test\\)": {
+      "rawContent": "[\"lib\", \"test/support\"]",
+      "content": {
+        "[\"lib\", \"test/support\"]": "[\"lib\", \"test/support\"]"
+      },
+      "isPrivate": true
+    },
+    "elixirc_paths\\(:ci\\)": {
+      "rawContent": "[\"lib\", \"test/support\"]",
+      "content": {
+        "[\"lib\", \"test/support\"]": "[\"lib\", \"test/support\"]"
+      },
+      "isPrivate": true
+    },
+    "elixirc_paths\\(_\\)": {
+      "rawContent": "[\"lib\"]",
+      "content": {
+        "[\"lib\"]": "[\"lib\"]"
+      },
+      "isPrivate": true
+    }
+  }
+}

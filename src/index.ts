@@ -65,7 +65,47 @@ export const parse = (config: string): Result => {
     /**
      * Parsed content of the function.
      */
-    const content: Partial<Content> = {}; // TODO: parse rawContent
+    let content: Partial<Content> = {};
+
+    // match configuration
+    if (rawContent.match(/\[\s+.+?:.+/)) {
+      const normalizedContent = rawContent
+        // remove comments
+        .replace(/#.*/g, '')
+        // remove new lines and extra spaces
+        .replace(/\s+/g, '')
+        // remove squre brackets
+        .replace(/[\[\]{}]/g, '')
+        // split lines
+        .split(',')
+        // remove empty string etc
+        .filter(Boolean);
+
+      const parsedContent = {};
+
+      normalizedContent.forEach(str => {
+        // match expressions like `app: app`
+        if (!str.match(/.+:.+/)) {
+          const keyValue = str.replace(/[""]/g, '');
+          parsedContent[keyValue] = keyValue;
+
+          return;
+        }
+
+        // find first `:`
+        const pos = str.indexOf(':');
+        // get first slice as key and remove extra `semis`
+        const key = str.slice(0, pos).replace(/[""]/g, '');
+        // get second slice as value and remove extra `semis`
+        const value = str.slice(pos + 1).replace(/[""]/g, '');
+
+        parsedContent[key] = value;
+      });
+
+      content = { ...content, ...parsedContent };
+    } else {
+      content[rawContent] = rawContent;
+    }
 
     /**
      * Match function definition keyword(private and public).
@@ -145,8 +185,8 @@ parse(`defmodule App.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:dep_from_hexpm, "~> 0.3.0"},
+      {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]
   end
 end`);

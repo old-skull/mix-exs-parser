@@ -1,7 +1,15 @@
 {
-  "name": "mix-exs-parser",
+  "name": "@nx-skull/mix-exs-parser",
   "version": "1.0.0",
   "description": "Mix config parser",
+  "author": "TicTak21",
+  "license": "MIT",
+  "keywords": [
+    "old-skull",
+    "mix",
+    "exs",
+    "parser"
+  ],
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -22,14 +30,6 @@
     "format": "prettier --write \"./**/*.ts\"",
     "test": "ava"
   },
-  "keywords": [
-    "old-skull",
-    "mix",
-    "exs",
-    "parser"
-  ],
-  "author": "TicTak21",
-  "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.7.16",
     "ava": "^4.3.3",

@@ -1,5 +1,5 @@
 {
-  "name": "@nx-skull/mix-exs-parser",
+  "name": "@old-skull/mix-exs-parser",
   "version": "1.0.0",
   "description": "Mix config parser",
   "author": "TicTak21",

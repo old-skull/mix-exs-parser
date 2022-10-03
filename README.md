@@ -2,6 +2,9 @@
 
 Convert mix.exs to the AST-like JSON.
 
+[website](https://mix-exs-parser.surge.sh/)
+[npm](https://www.npmjs.com/package/@old-skull/mix-exs-parser)
+
 ## Example
 
 ![Result](./assets/result.png)

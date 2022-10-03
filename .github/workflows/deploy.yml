@@ -21,10 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
-      - name: Install deps
-        run: pnpm install
-
-      - name: Deplot to surge.sh
+      - name: Deploy to surge.sh
         uses: dswistowski/surge-sh-action@v1.0.1
         with:
           domain: 'mix-exs-parser.surge.sh'

@@ -22,7 +22,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Build website
-        run: cd ./website && pnpm build
+        run: cd ./website && pnpm i && pnpm build
 
       - name: Deploy to surge.sh
         uses: dswistowski/surge-sh-action@v1.0.1

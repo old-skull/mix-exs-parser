@@ -20,14 +20,14 @@ export const parse = (config: string): Result => {
    *
    * Match all that starts with `use\s`.
    */
-  const uses: RegExpMatchArray = config.match(/(?<=use )(?:.*)/g) || [];
+  const uses = config.match(/(?<=use )(?:.*)/g) || [];
 
   /**
    * Match all def names(public and private).
    *
    * Match all between `def\s|defp\s` and `,|\sdo` without `,`.
    */
-  const defNames: RegExpMatchArray =
+  const defNames =
     config.match(/(?<=(?:def|defp)\s)(.*?[^,])(?=,|\sdo)/g) || [];
 
   /**
@@ -129,15 +129,14 @@ export const parse = (config: string): Result => {
    *
    * Match all after `#`.
    */
-  const singleLineComments: RegExpMatchArray = config.match(/#\s.+/g) || [];
+  const singleLineComments = config.match(/#\s.+/g) || [];
 
   /**
    * Match all multi-line comments.
    *
    * Match all between `"""` and `"""`.
    */
-  const multiLineComments: RegExpMatchArray =
-    config.match(/"""[\s\S]*"""/g) || [];
+  const multiLineComments = config.match(/"""[\s\S]*"""/g) || [];
 
   const result: Result = {
     moduleName,

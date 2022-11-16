@@ -20,10 +20,10 @@ export interface Defs {
 
 export interface Result {
   moduleName: string;
-  uses: RegExpMatchArray;
+  uses: RegExpMatchArray | [];
   comments: {
-    single: RegExpMatchArray;
-    multi: RegExpMatchArray;
+    single: RegExpMatchArray | [];
+    multi: RegExpMatchArray | [];
   };
   defs: Defs;
 }

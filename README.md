@@ -2,15 +2,15 @@
 
 Convert mix.exs to the AST-like JSON.
 
-[website](https://mix-exs-parser.surge.sh/)
-[npm](https://www.npmjs.com/package/@old-skull/mix-exs-parser)
+[playground](https://mix-exs-parser.surge.sh/) | [npm](https://www.npmjs.com/package/@old-skull/mix-exs-parser)
 
-## Example
+## Examples
 
-![Result](./assets/result.png)
+Visit [playground](https://mix-exs-parser.surge.sh/)
 
-More examples inside `test` folder.
-Each file from `test/configs` has the same name file from `test/expected`.
+OR
+
+Look at examples in the `test` folder.
 
 ## TODO
 

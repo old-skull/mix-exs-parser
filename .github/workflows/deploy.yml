@@ -21,10 +21,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
 
+      - name: Build website
+        run: cd ./website && pnpm build
+
       - name: Deploy to surge.sh
         uses: dswistowski/surge-sh-action@v1.0.1
         with:
           domain: 'mix-exs-parser.surge.sh'
-          project: 'website'
+          project: 'website/dist'
           login: ${{ secrets.SURGE_LOGIN }}
           token: ${{ secrets.SURGE_TOKEN }}

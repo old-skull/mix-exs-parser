@@ -1,6 +1,6 @@
 {
   "name": "@old-skull/mix-exs-parser",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Mix config parser",
   "author": "TicTak21",
   "license": "MIT",

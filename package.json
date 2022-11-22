@@ -1,6 +1,6 @@
 {
   "name": "@old-skull/mix-exs-parser",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Mix config parser",
   "author": "TicTak21",
   "license": "MIT",
@@ -14,6 +14,7 @@
     "type": "git",
     "url": "https://github.com/old-skull/mix-exs-parser"
   },
+  "sideEffects": false,
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
